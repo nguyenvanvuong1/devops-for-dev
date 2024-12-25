@@ -63,15 +63,15 @@ variable "workload_instance_types" {
 
 variable "workload_min_size" {
   type = number
-  default = 1
+  default = 3
 }
 
 variable "workload_desired_size" {
   type = number
-  default = 1
+  default = 3
 }
 
 variable "workload_max_size" {
   type = number
-  default = 1
+  default = 3
 }
