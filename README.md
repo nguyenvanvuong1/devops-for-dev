@@ -5,7 +5,11 @@
 - ECR
 - Jenkins
 # terraform commands
-terraform init
-terraform plan
-terraform apply
-terraform destroy
+## init 
+```terraform init```
+## plan
+```terraform plan```
+## apply
+```terraform apply --auto-approve```
+## destroy
+```terraform destroy --auto-approve```
