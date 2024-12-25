@@ -27,5 +27,5 @@ module "eks"{
     vpc_id = module.vpc.vpc_id
     vpc_intra_subnets = module.vpc.vpc_intra_subnets[*]
     vpc_private_subnets = module.vpc.vpc_private_subnets
-    
+
 }
