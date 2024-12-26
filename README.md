@@ -25,6 +25,8 @@
 ## ArgoCD
 - Port forwarding
 ```kubectl port-forward svc/argocd-server -n argocd 8080:443```
+```kubectl port-forward svc/kube-prometheus-stack-grafana -n kube-prometheus-stack 8081:80```
+```kubectl port-forward svc/sd4776-dev-app1 -n sd4776-dev 5101:5101```
 - admin password
 ```kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d```
 ## Jenkins
