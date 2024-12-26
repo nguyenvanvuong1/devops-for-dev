@@ -8,7 +8,6 @@ resource "kubernetes_manifest" "argocd_secret" {
   depends_on = [
     helm_release.argocd,
   ]
-
 }
 
 data "aws_iam_policy_document" "ecr" {
@@ -58,7 +57,7 @@ module "iam_assumable_role_ecr" {
 
   oidc_providers = {
     one = {
-      provider_arn = module.eks.oidc_provider_arn
+      provider_arn = var.oidc_provider_arn
   
       namespace_service_accounts = ["argocd:argocd-image-updater"]
     }

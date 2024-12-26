@@ -1,3 +1,8 @@
+data "aws_ssm_parameter" "github_token" {
+  name            = "${var.project}-${var.environment}-github-token"
+  with_decryption = false
+}
+
 locals {
   argocd_components = ["controller", "dex", "redis", "server", "repoServer", "notifications", "applicationSet"]
   secrets           = base64encode(data.aws_ssm_parameter.github_token.value)
@@ -13,13 +18,13 @@ resource "aws_iam_role" "argocd" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "${module.eks.oidc_provider_arn}"
+        "Federated": "${var.oidc_provider_arn}"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringEquals": {
-            "${replace(module.eks.oidc_provider_arn, "/^(.*provider/)/", "")}:sub": "system:serviceaccount:argocd:argocd-repo-server",
-            "${replace(module.eks.oidc_provider_arn, "/^(.*provider/)/", "")}:aud": "sts.amazonaws.com"
+            "${replace(var.oidc_provider_arn, "/^(.*provider/)/", "")}:sub": "system:serviceaccount:argocd:argocd-repo-server",
+            "${replace(var.oidc_provider_arn, "/^(.*provider/)/", "")}:aud": "sts.amazonaws.com"
         }
       }
     }

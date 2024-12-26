@@ -28,9 +28,16 @@
 - admin password
 ```kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d```
 ## Jenkins
+- Dashboard: http://:8080
+- admin password
+```sudo cat /var/lib/jenkins/secrets/initialAdminPassword```
 - setup permission
 ```sudo usermod -aG docker jenkins```
 - check command
 ```sudo su - jenkins```
 ```docker ps```
 ```sudo systemctl restart jenkins```
+
+## EKS 
+- Set configuration 
+```aws eks update-kubeconfig --name eks```
